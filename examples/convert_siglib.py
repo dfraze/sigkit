@@ -27,6 +27,7 @@ purposes.
 
 import pickle
 import zlib
+import os
 
 from sigkit import *
 
@@ -39,7 +40,8 @@ if __name__ == '__main__':
 
 	# Load a signature library.
 	filename = sys.argv[1]
-	basename, ext = filename[:filename.index('.')], filename[filename.index('.'):]
+	basename = os.path.basename(filename)
+	ext = os.path.splitext(path)
 	if ext == '.sig':
 		with open(filename, 'rb') as f:
 			sig_trie = sig_serialize_fb.load(f)
